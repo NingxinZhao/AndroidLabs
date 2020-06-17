@@ -3,6 +3,8 @@ package com.example.androidlabs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,55 +19,39 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences prefs = null;
+    private EditText email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_relative);
+        setContentView(R.layout.activity_main_layout);
 
-        Button btn = findViewById(R.id.checkBox2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
+        email = findViewById(R.id.typed_email);
+        email.setHint(getString(R.string.email_here));
 
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_message) , Toast.LENGTH_LONG).show();
-            }
+        prefs = getSharedPreferences("com.example.androidlabs", Context.MODE_PRIVATE);
+        String savedString = prefs.getString("email", "");
+        email.setText(savedString);
+
+        Button loginButton = findViewById(R.id.loginButton);
+        //loginButton.setOnClickListener(bt -> onPause());
+        loginButton.setOnClickListener(click -> {
+            Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+            goToProfile.putExtra("email", email.getText().toString());
+            startActivity(goToProfile);
         });
-
-        //Snackbar snackbar = (Button) findViewById(R.id.snkbtn);
-        final Snackbar snackbar;
-        final Switch swi1 = findViewById(R.id.switch1);
-        swi1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                final Snackbar snackbar;
-                boolean flag = swi1.isChecked();
-                String output;
-                if(flag) {
-                    output = getString(R.string.Switch_on);
-                }
-                else{
-                    output = getString(R.string.Switch_off);
-                }
-
-                snackbar = Snackbar.make(view,output, Snackbar.LENGTH_LONG).setAction("Action", null);
-                snackbar.setAction(R.string.undo_string, new MyUndoListener());
-                snackbar.show();
-            }
-
-
-             class MyUndoListener implements View.OnClickListener{
-                @Override
-
-                public void onClick(View v){
-                    final Switch swi1 = findViewById(R.id.switch1);
-                    swi1.setChecked(false);
-                }
-
-            }
-        });
-
-        EditText et = findViewById(R.id.myEditText);
-        et.setHint(getString(R.string.type_message));
 
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        prefs = getSharedPreferences("com.example.androidlabs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = prefs.edit();
+        ed.putString("email", email.getText().toString());
+        ed.commit();
+    }
+
 }

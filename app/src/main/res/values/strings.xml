@@ -9,4 +9,13 @@
     <string name="undo_string">Undo</string>
     <string name="Switch_on">The switch is now on</string>
     <string name="Switch_off">The switch is now off</string>
+    <string name="email_address">Enter your email address:</string>
+    <string name="email_here">Type your email here</string>
+    <string name="password">Type your password:</string>
+    <string name="profile">Your profile</string>
+    <string name="name">Your name:</string>
+    <string name="email">Your email:</string>
+    <string name="picture">Your picture:</string>
+    <string name="checkButton">Click the button above to take a picture:</string>
+    <string name="name_here">Enter your name</string>
 </resources>

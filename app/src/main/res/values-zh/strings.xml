@@ -10,4 +10,13 @@
     <string name="undo_string">撤销</string>
     <string name="Switch_on">开关已开</string>
     <string name="Switch_off">开关已关</string>
+    <string name="email_address">请输入邮箱:</string>
+    <string name="email_here">在这里输入邮箱</string>
+    <string name="password">密码:</string>
+    <string name="profile">简介:</string>
+    <string name="name">名字:</string>
+    <string name="email">邮箱:</string>
+    <string name="picture">照片:</string>
+    <string name="checkButton">点上面照照片</string>
+    <string name="name_here">请输入姓名</string>
 </resources>
