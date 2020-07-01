@@ -16,6 +16,7 @@
     <string name="name">Your name:</string>
     <string name="email">Your email:</string>
     <string name="picture">Your picture:</string>
+    <string name="loginButton">Login</string>
     <string name="checkButton">Click the button above to take a picture:</string>
     <string name="name_here">Enter your name</string>
 </resources>

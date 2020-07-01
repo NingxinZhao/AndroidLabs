@@ -14,6 +14,7 @@
     <string name="email_here">在这里输入邮箱</string>
     <string name="password">密码:</string>
     <string name="profile">简介:</string>
+    <string name="loginButton">登录</string>
     <string name="name">名字:</string>
     <string name="email">邮箱:</string>
     <string name="picture">照片:</string>

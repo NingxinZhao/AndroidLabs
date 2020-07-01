@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
 
+        
+
         email = findViewById(R.id.typed_email);
         email.setHint(getString(R.string.email_here));
 
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     protected void onPause() {

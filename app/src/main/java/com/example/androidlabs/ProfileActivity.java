@@ -20,8 +20,6 @@ public class ProfileActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageButton imageButton;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
