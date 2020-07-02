@@ -61,4 +61,12 @@
         android:layout_height="wrap_content"
         android:text="@string/checkButton" />
 
+    <Button
+        android:id="@+id/goToChatRoomButton"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text = "@string/goToChatRoom"
+        android:layout_gravity="center"
+        />
+
 </LinearLayout>

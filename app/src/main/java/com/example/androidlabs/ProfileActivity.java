@@ -33,6 +33,12 @@ public class ProfileActivity extends AppCompatActivity {
         imageButton = (ImageButton)findViewById(R.id.imageButton);
         imageButton.setOnClickListener(event -> dispatchTakePictureIntent());
         Log.e(ACTIVITY_NAME, "In function:onCreate()");
+
+        Button addButton = findViewById(R.id.goToChatRoomButton);
+        addButton.setOnClickListener(click->{
+            Intent intent = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -43,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageButton.setImageBitmap(imageBitmap);
         }
-        Log.e(ACTIVITY_NAME, "In function:onActivityResult()");
+        //Log.e(ACTIVITY_NAME, "In function:onActivityResult()");
     }
 
     private void dispatchTakePictureIntent() {
@@ -56,33 +62,33 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e(ACTIVITY_NAME, "In function:onStart()");
+        //Log.e(ACTIVITY_NAME, "In function:onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(ACTIVITY_NAME, "In function:onResume()");
+        //Log.e(ACTIVITY_NAME, "In function:onResume()");
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(ACTIVITY_NAME, "In function:onPause()");
+        //Log.e(ACTIVITY_NAME, "In function:onPause()");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(ACTIVITY_NAME, "In function:onStop()");
+        //Log.e(ACTIVITY_NAME, "In function:onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(ACTIVITY_NAME, "In function:onDestroy()");
+        //Log.e(ACTIVITY_NAME, "In function:onDestroy()");
     }
 
 }

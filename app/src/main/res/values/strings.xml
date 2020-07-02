@@ -19,4 +19,9 @@
     <string name="loginButton">Login</string>
     <string name="checkButton">Click the button above to take a picture:</string>
     <string name="name_here">Enter your name</string>
+    <string name="goToChatRoom">Go to Chat room</string>
+    <string name="sendButton">SEND</string>
+    <string name="receiveButton">RECIVE</string>
+
+
 </resources>

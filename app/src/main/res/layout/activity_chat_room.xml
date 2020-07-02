@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatRoomActivity">
+
+    <ListView
+        android:id = "@+id/theListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <Button
+        android:id = "@+id/sendButton"
+        android:layout_width = "wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "@string/sendButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+
+    <EditText
+        android:id="@+id/typeHere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/type_message"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/sendButton"
+        android:layout_toLeftOf="@id/receiveButton" />
+
+    <Button
+        android:id="@+id/receiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/receiveButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

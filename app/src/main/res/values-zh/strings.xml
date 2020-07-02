@@ -20,4 +20,8 @@
     <string name="picture">照片:</string>
     <string name="checkButton">点上面照照片</string>
     <string name="name_here">请输入姓名</string>
+    <string name="goToChatRoom">聊天室</string>
+    <string name="sendButton">发送</string>
+    <string name="receiveButton">接收</string>
+
 </resources>
