@@ -15,6 +15,11 @@ public class Message {
         this.message = message;
         this.isSend = isSend;
     }
+
+    public void update(String message) {
+        this.message = message;
+    }
+
     public long getId() {
         return id;
     }
