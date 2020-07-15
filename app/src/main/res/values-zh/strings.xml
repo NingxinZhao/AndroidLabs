@@ -23,5 +23,6 @@
     <string name="goToChatRoom">聊天室</string>
     <string name="sendButton">发送</string>
     <string name="receiveButton">接收</string>
+    <string name="weatherForecast">天气</string>
 
 </resources>

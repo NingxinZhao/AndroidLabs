@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ChatRoomActivity extends AppCompatActivity {
-    MyOwnAdapter myAdapter;
-    ArrayList<Message> messageList = new ArrayList<>();
+   // MyOwnAdapter myAdapter;
+    //ArrayList<Message> messageList = new ArrayList<>();
     private static int ACTIVITY_VIEW_MESSAGE = 33;
     int positionClicked = 0;
     SQLiteDatabase db;
@@ -43,8 +43,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         loadDataFromDatabase();
 
         //create an adapter object and send it to the listVIew
-        myAdapter = new MyOwnAdapter();
-        myList.setAdapter(myAdapter);
+     //   myAdapter = new MyOwnAdapter();
+       // myList.setAdapter(myAdapter);
 
         myList.setOnItemClickListener(((parent, view, position, id) -> {
             showMessage(position);
@@ -67,12 +67,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             //now you have the newId, you can create the Message object
 
-            Message newMe = new Message(newId, message, true);
+            //Message newMe = new Message(newId, message, true);
 
             //add the new contact to the list:
-            messageList.add(newMe);
+            //messageList.add(newMe);
             //update the listView:
-            myAdapter.notifyDataSetChanged();
+         //   myAdapter.notifyDataSetChanged();
 
             userType.setText("");
 
@@ -99,12 +99,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
 
             //now you have the newId, you can create the Message object
-            Message newMe = new Message(newId, message, false);
+           // Message newMe = new Message(newId, message, false);
 
             //add the new contact to the list:
-            messageList.add(newMe);
+           // messageList.add(newMe);
             //update the listView:
-            myAdapter.notifyDataSetChanged();
+           // myAdapter.notifyDataSetChanged();
             userType.setText("");
 
             //Show the id of the inserted item:
@@ -137,14 +137,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                 boolean isSend = results.getInt(sendColIndex)==1;
 
                 //add the new message to the array list
-                messageList.add(new Message(id, message,  isSend));
+             //   messageList.add(new Message(id, message,  isSend));
             }
-            printCursor(results, db.getVersion());
-            }
+                printCursor(results, db.getVersion());
+        }
 
 
         protected void showMessage(int position) {
-            Message selectedMessage = messageList.get(position);
+          //  Message selectedMessage = messageList.get(position);
 
             View message_view = getLayoutInflater().inflate(R.layout.message_edit, null);
 
@@ -153,29 +153,29 @@ public class ChatRoomActivity extends AppCompatActivity {
             TextView rowId = message_view.findViewById(R.id.msgId);
 
             //set the fields for the alert dialog
-            rowMessage.setText(selectedMessage.getMessage());
-            rowId.setText("id:" + selectedMessage.getId());
+          //  rowMessage.setText(selectedMessage.getMessage());
+         //   rowId.setText("id:" + selectedMessage.getId());
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("You clicked on item #" + position)
                     .setMessage("You can update the fields and then click update to save in the database")
                     .setView(message_view) //add the 1 edit text showing the message information
                     .setPositiveButton("Update", (click, b) -> {
-                        selectedMessage.update(rowMessage.getText().toString());
-                        updateMessage(selectedMessage);
-                        myAdapter.notifyDataSetChanged(); //the message have changed so rebuild the list
+             //           selectedMessage.update(rowMessage.getText().toString());
+                        //updateMessage(selectedMessage);
+             //           myAdapter.notifyDataSetChanged(); //the message have changed so rebuild the list
                     })
                     .setNegativeButton("Delete", (click, b) -> {
-                        deleteMessage(selectedMessage); //remove the contact from database
-                        messageList.remove(position); //remove the contact from contact list
-                        myAdapter.notifyDataSetChanged(); //there is one less item so update the list
+          //              deleteMessage(selectedMessage); //remove the contact from database
+          //              messageList.remove(position); //remove the contact from contact list
+           //             myAdapter.notifyDataSetChanged(); //there is one less item so update the list
                     })
                     .setNeutralButton("dismiss", (click, b) -> {
                     })
                     .create().show();
     }
 
-        protected void updateMessage(Message m) {
+       /* protected void updateMessage(Message m) {
         //Create a ContentValues object to represent a database row:
         ContentValues updatedValues = new ContentValues();
         updatedValues.put(MyOpener.COL_MESSAGE, m.getMessage());
@@ -187,9 +187,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         protected void deleteMessage(Message m) {
         db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(m.getId())});
 
-    }
+    }*/
 
-    class MyOwnAdapter extends BaseAdapter {
+   /* class MyOwnAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -223,7 +223,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         public long getItemId(int position) {
             return getItem(position).getId();
         }
-    }
+    }*/
 
 
         protected void printCursor(Cursor c, int version) {

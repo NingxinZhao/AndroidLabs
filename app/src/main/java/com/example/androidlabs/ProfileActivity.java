@@ -39,6 +39,12 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(ProfileActivity.this, ChatRoomActivity.class);
             startActivity(intent);
         });
+
+        Button weatherForecastbutton = findViewById(R.id.weatherForecastButton);
+        weatherForecastbutton.setOnClickListener(click ->{
+            Intent weatherForecast = new Intent(ProfileActivity.this, WeatherForecast.class);
+            startActivity(weatherForecast);
+        });
     }
 
     @Override
@@ -93,8 +99,4 @@ public class ProfileActivity extends AppCompatActivity {
 
 }
 
-// class mImageButton{
-    //public static void setImageBitmap(Bitmap imageBitmap) {
 
-     //}
- //}
