@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
 
-        
+
 
         email = findViewById(R.id.typed_email);
         email.setHint(getString(R.string.email_here));
@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         email.setText(savedString);
 
         Button loginButton = findViewById(R.id.loginButton);
-        //loginButton.setOnClickListener(bt -> onPause());
+        loginButton.setOnClickListener(bt -> onPause());
         loginButton.setOnClickListener(click -> {
-            Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
-            goToProfile.putExtra("email", email.getText().toString());
-            startActivity(goToProfile);
+            Intent weatherForecast = new Intent(MainActivity.this, WeatherForecast.class);
+            startActivity(weatherForecast);
+            //Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+            //goToProfile.putExtra("email", email.getText().toString());
+            //startActivity(goToProfile);
         });
 
     }

@@ -59,14 +59,13 @@ public class WeatherForecast extends AppCompatActivity {
         ForecastQuery forecastQuery = new ForecastQuery();
         forecastQuery.execute(weatherUrl, uvUrl);
 
-
         progressBar.setVisibility(View.VISIBLE);
     }
 
     private class ForecastQuery extends AsyncTask<String, Integer, String> {
         private String currentTemp, minTemp, maxTemp, iconName;
         private Bitmap image;
-        private String uvValue;
+        private String UV;
 
         @Override
         protected String doInBackground(String... args) {
@@ -111,7 +110,7 @@ public class WeatherForecast extends AppCompatActivity {
                 String fileName = iconName + ".png";
 
                 if (fileExistance(fileName)){
-                    Log.e(ACTIVITY_NAME, "Looking for file" + iconName + ".png");
+                    Log.e(ACTIVITY_NAME, "Looking for file" + fileName);
                     Log.e(ACTIVITY_NAME, "Weather image exists, found locally");
 
                     FileInputStream fis = null;
@@ -125,6 +124,7 @@ public class WeatherForecast extends AppCompatActivity {
                 } else {
                     Log.i(ACTIVITY_NAME, "Looking for file" + fileName);
                     Log.i(ACTIVITY_NAME, "Weather image does not exist, need to download");
+
                     image = null;
                     URL imageUrl = new URL("http://openweathermap.org/img/w/" + fileName);
                     HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
@@ -133,33 +133,42 @@ public class WeatherForecast extends AppCompatActivity {
                     if (responseCode == 200) {
                         image = BitmapFactory.decodeStream(connection.getInputStream());
                     }
-                    FileOutputStream outputStream  = openFileOutput(iconName + ".png", Context.MODE_PRIVATE);
+                    Log.i(ACTIVITY_NAME, "Image downloaded");
+
+                    //save image to local storage
+                    FileOutputStream outputStream  = openFileOutput(fileName, Context.MODE_PRIVATE);
                     image.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
                     outputStream.flush();
                     outputStream.close();
+                    Log.i(ACTIVITY_NAME, "Image saved");
                 }
-
                 publishProgress(100);
 
-                URL uvUrl = new URL(args[1]);
+                //connects to the UV index server
+                String uvUrlStr = "http://api.openweathermap.org/data/2.5/uvi?appid=7e943c97096a9784391a981c4d878b22&lat=45.348945&lon=-75.759389";
+                URL uvUrl = new URL(uvUrlStr);
+                //URL uvUrl = new URL(args[1]);
                 HttpURLConnection uvUrlConnection = (HttpURLConnection) uvUrl.openConnection();
                 InputStream uvResponse = uvUrlConnection.getInputStream();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(uvResponse, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder(100);
+
                 String line = null;
                 while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
 
                 String result = sb.toString();
+                //JSONParser parse = new JSONParser();
 
                 //convert string to JSON
-                JSONObject jObject = new JSONObject(result);
+                JSONObject jObject =  new JSONObject(result);
+
                 //get the double associated with "value"
-                uvValue = String.valueOf(jObject.getDouble("value"));
-                //uvRatingValue = uvValue + "";
-                Log.i("UV is:", "" + uvValue);
+                UV = String.valueOf(jObject.getDouble("value"));
+
+                Log.i("UV is:", "" + UV);
             } catch (Exception e) {
                 returnString = "error";
             }
@@ -180,10 +189,10 @@ public class WeatherForecast extends AppCompatActivity {
             super.onPostExecute(fromDoInBackground);
             char celsiusSymbol = 0x2103;
             weatherImage.setImageBitmap(image);
-            currentTemperature.setText(String.format("Current Temp: %s%c", currentTemp, celsiusSymbol));
+            currentTemperature.setText(String.format("Current: %s%c", currentTemp, celsiusSymbol));
             minTemperature.setText(String.format("Min: %s%c", minTemp, celsiusSymbol));
             maxTemperature.setText(String.format("Max: %s%c", maxTemp, celsiusSymbol));
-            uvRating.setText(String.format("UV Index: %s", uvValue));
+            uvRating.setText(String.format("UV rating: %s", UV));
             progressBar.setVisibility(View.INVISIBLE);
         }
 
