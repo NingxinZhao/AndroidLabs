@@ -19,9 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
-        android:background="@color/colorAccent"
         android:layout_toRightOf="@+id/theListView"
-        > </FrameLayout>
+        android:background="@color/colorAccent"></FrameLayout>
 
     <Button
         android:id = "@+id/sendButton"
@@ -34,10 +33,11 @@
 
     <EditText
         android:id="@+id/typeHere"
-        android:layout_width="300dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:hint="@string/type_message"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/sendButton"/>
 
     <Button
         android:id="@+id/receiveButton"
@@ -45,6 +45,6 @@
         android:layout_height="wrap_content"
         android:text="@string/receiveButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@id/typeHere"/>
+        android:layout_alignRight="@id/typeHere" />
 
 </RelativeLayout>

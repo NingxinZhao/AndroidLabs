@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         prefs = getSharedPreferences("com.example.androidlabs", Context.MODE_PRIVATE);
+        String previous = prefs.getString("email", " ");
         SharedPreferences.Editor ed = prefs.edit();
         ed.putString("email", email.getText().toString());
         ed.commit();
